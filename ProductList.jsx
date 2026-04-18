@@ -5,7 +5,7 @@ import { addItem } from './CartSlice';
 const plants = [
   { category: "Air Purifying", name: "Peace Lily", price: 12.99, image: "https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?w=400" },
   { category: "Air Purifying", name: "Spider Plant", price: 8.99, image: "https://images.unsplash.com/photo-1572688484438-313a6e50c333?w=400" },
-  { category: "Air Purifying", name: "Snake Plant", price: 15.99, image: "https://images.unsplash.com/photo-1620127807580-990c3eceChronicles?w=400" },
+  { category: "Air Purifying", name: "Snake Plant", price: 15.99, image: "https://images.unsplash.com/photo-1596547609652-9cf5d8c76ea2?w=400" },
   { category: "Air Purifying", name: "Aloe Vera", price: 9.99, image: "https://images.unsplash.com/photo-1596547609652-9cf5d8c76ea2?w=400" },
   { category: "Air Purifying", name: "Boston Fern", price: 11.99, image: "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400" },
   { category: "Air Purifying", name: "Bamboo Palm", price: 18.99, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400" },
@@ -23,7 +23,7 @@ const plants = [
   { category: "Decorative", name: "Calathea", price: 16.99, image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=400" },
 ];
 
-function ProductList({ onCartClick }) {
+function ProductList({ onCartClick, onHomeClick }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cart.items);
   const [addedItems, setAddedItems] = useState({});
@@ -41,10 +41,10 @@ function ProductList({ onCartClick }) {
     <div>
       <nav className="navbar">
         <h2>Paradise Nursery</h2>
-        <div>
-          <a href="#">Home</a>
-          <a href="#">Plants</a>
-          <span className="cart-icon" onClick={onCartClick}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <a href="#" onClick={onHomeClick} style={{ color: 'white', textDecoration: 'none' }}>Home</a>
+          <a href="#" style={{ color: 'white', textDecoration: 'none' }}>Plants</a>
+          <span className="cart-icon" onClick={onCartClick} style={{ cursor: 'pointer', position: 'relative' }}>
             🛒 <span className="cart-count">{totalCount}</span>
           </span>
         </div>
@@ -61,7 +61,14 @@ function ProductList({ onCartClick }) {
                 <button
                   onClick={() => handleAddToCart(plant)}
                   disabled={addedItems[plant.name]}
-                  style={{ padding: '8px 20px', background: addedItems[plant.name] ? '#ccc' : '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: addedItems[plant.name] ? 'not-allowed' : 'pointer' }}
+                  style={{
+                    padding: '8px 20px',
+                    background: addedItems[plant.name] ? '#ccc' : '#4CAF50',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: addedItems[plant.name] ? 'not-allowed' : 'pointer'
+                  }}
                 >
                   {addedItems[plant.name] ? 'Added' : 'Add to Cart'}
                 </button>
