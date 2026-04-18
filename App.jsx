@@ -12,12 +12,12 @@ function App() {
   }
 
   if (showProducts) {
-    return <ProductList onCartClick={() => setShowCart(true)} />;
+    return <ProductList onCartClick={() => setShowCart(true)} onHomeClick={() => setShowProducts(false)} />;
   }
 
   return (
     <div className="landing-page">
-      <h1>Paradise Nursery</h1>
+      <h1>Welcome to Paradise Nursery</h1>
       <p>Where Green Meets Serenity</p>
       <button className="get-started-btn" onClick={() => setShowProducts(true)}>
         Get Started
